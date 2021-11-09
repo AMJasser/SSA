@@ -17,6 +17,8 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 
 const index = require("./routes/index");
+const about = require("./routes/about");
+const events = require("./routes/events");
 
 const app = express();
 
@@ -56,6 +58,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Mount routers
 app.use("/", index);
+app.use("/about", about);
+app.use("/events", events);
 
 app.use(errorHandler);
 
