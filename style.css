@@ -16,6 +16,10 @@ body {
     flex-direction: column;
 }
 
+.stop-scroll {
+    overflow-y: hidden;
+}
+
 header {
     height: 100px;
     background-color: #000000;
@@ -90,12 +94,12 @@ header div {
     align-items: center;
     justify-content: space-evenly;
     transition: all 1s ease-in-out;
+    z-index: 9999;
 }
 
 #shrink-header.show {
     padding: 50px 0;
     max-height: 400px;
-
 }
 
 #shrink-header a {
@@ -112,7 +116,7 @@ header div {
     }
 
     header nav a#menu-icon {
-        display:initial;
+        display: initial;
     }
 }
 
@@ -173,7 +177,7 @@ main h2 {
 .card {
     display: flex;
     flex-direction: row;
-    height: 400px;
+    height: 500px;
     justify-content: left;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -181,11 +185,12 @@ main h2 {
     margin: 50px 0;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    overflow: hidden;
+    cursor: pointer;
 }
 
-.card:hover {
-    transform: scale(1.01);
-    box-shadow: 0 6px 20px rgb(0 0 0 / 0.2);
+.card:hover .img {
+    min-width: 100%;
 }
 
 .card .img {
@@ -196,6 +201,7 @@ main h2 {
     background-position: center;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    transition: all 0.5s ease-in-out;
 }
 
 .card .text {
@@ -240,4 +246,53 @@ main h2 {
     #banner div img {
         width: 150px;
     }
+}
+
+.card .overlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.card .show {
+    display: flex;
+}
+
+.card .overlay div {
+    width: 90%;
+    height: 80%;
+    background: #FFFFFF;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+.card .overlay h3 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.card .overlay section {
+    margin-top: 20px;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    overflow-y: scroll;
+    max-height: calc(100% - 59px);
+}
+
+.card .overlay section div {
+    height: 300px;
+    width: 300px;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
