@@ -19,6 +19,7 @@ connectDB();
 const index = require("./routes/index");
 const about = require("./routes/about");
 const events = require("./routes/events");
+const login = require("./routes/login");
 
 const app = express();
 
@@ -48,7 +49,7 @@ app.use(cors());
 app.use(function (req, res, next) {
     res.setHeader(
         "Content-Security-Policy",
-        "default-src 'self' *.amj.codes amj.codes edu-vents.com *.edu-vents.com; font-src 'self' *.amj.codes amj.codes edu-vents.com *.edu-vents.com fonts.googleapis.com fonts.gstatic.com; img-src 'self' *.amj.codes amj.codes edu-vents.com *.edu-vents.com; script-src 'self' 'unsafe-inline' *.amj.codes amj.codes edu-vents.com *.edu-vents.com; style-src 'self' 'unsafe-inline' *.amj.codes amj.codes edu-vents.com *.edu-vents.com fonts.googleapis.com; frame-src 'self' *.amj.codes amj.codes edu-vents.com *.edu-vents.com"
+        "default-src 'self'; font-src 'self' fonts.googleapis.com fonts.gstatic.com; img-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; frame-src 'self';"
     );
     next();
 });
@@ -60,6 +61,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", index);
 app.use("/about", about);
 app.use("/events", events);
+app.use("/login", login);
 
 app.use(errorHandler);
 
