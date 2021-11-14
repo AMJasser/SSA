@@ -1,7 +1,8 @@
 const express = require('express');
 const {
-    createUser
-} = require("../controllers/users")
+    getMembership,
+    createMember
+} = require("../controllers/members")
 
 const router = express.Router({ mergeParams: true });
 
@@ -9,6 +10,7 @@ const { protect } = require("../middleware/auth");
 
 router
     .route("/")
-    .post(createUser);
+    .get(getMembership)
+    .post(createMember);
 
 module.exports = router;

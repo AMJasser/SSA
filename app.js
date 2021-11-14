@@ -19,8 +19,7 @@ connectDB();
 const index = require("./routes/index");
 const about = require("./routes/about");
 const events = require("./routes/events");
-const membership = require("./routes/membership");
-const users = require("./routes/users");
+const members = require("./routes/members");
 
 const app = express();
 
@@ -62,8 +61,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", index);
 app.use("/about", about);
 app.use("/events", events);
-app.use("/membership", membership);
-app.use("/users", users);
+app.use("/members", members);
 
 app.use(errorHandler);
 

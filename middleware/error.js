@@ -24,6 +24,12 @@ const errorHandler = (err, req, res, next) => {
         error = new ErrorResponse(message, 400);
     }
 
+    /*if (req.body) {
+        for (const [key, value] of Object.entries(req.body)) {
+            redirectUrl.searchParams.append(key, value);
+        }
+    }*/
+    
     res.status(error.statusCode || 500).json({
         success: false,
         error: error.message || "Server Error",

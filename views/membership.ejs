@@ -2,21 +2,23 @@
 
 <main>
     <h2>Membership</h2>
-    <form action="/users" method="POST" enctype="application/x-www-form-urlencoded">
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name">
-        </div>
-        <div>
-            <label for="email">GT Email</label>
-            <input type="text" name="email" id="email">
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-        </div>
+    <form action="/members" method="POST" enctype="application/x-www-form-urlencoded">
+        <section>
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div>
+                <label for="email">GT Email</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+            </div>
+        </section>
         <input type="submit">
-    </section>
+    </form>
 </main>
 
 <%- include ("partials/footer") %>

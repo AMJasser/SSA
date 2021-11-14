@@ -19,7 +19,7 @@
             <nav>
                 <a href="/">HOME</a>
                 <a href="/about">ABOUT</a>
-                <a href="/membership">MEMBERSHIP</a>
+                <a href="/members">MEMBERSHIP</a>
                 <a href="/events">EVENTS</a>
                 <a id="menu-icon" onclick="rotateIcon(this)">
                     <div class="bar1"></div>
@@ -31,6 +31,23 @@
         <div id="shrink-header">
             <a href="/">HOME</a>
             <a href="/about">ABOUT</a>
-            <a href="/membership">MEMBERSHIP</a>
+            <a href="/members">MEMBERSHIP</a>
             <a href="/events">EVENTS</a>
         </div>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.transform='translateY(-62px)';">&times;</span>
+            HEHEHE
+        </div>
+        <script>
+            function flash(msg) {
+                let alertEl = document.querySelector(".alert");
+                alertEl.innerHTML = `<span class="closebtn" onclick="this.parentElement.style.transform='translateY(-62px)';">×</span>\n ${msg}\n`;
+                alertEl.style.transform = "translateY(0)";
+            }
+
+            document.onload = {
+                <% if (typeof msg === "string") { %>
+                    flash("<%= msg %>");
+                <% } %>
+            }
+        </script>
