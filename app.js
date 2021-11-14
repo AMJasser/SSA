@@ -19,14 +19,15 @@ connectDB();
 const index = require("./routes/index");
 const about = require("./routes/about");
 const events = require("./routes/events");
-const login = require("./routes/login");
+const membership = require("./routes/membership");
+const users = require("./routes/users");
 
 const app = express();
 
 app.set("view engine", "ejs");
 
 // Body parser
-app.use(express.json());
+app.use(express.urlencoded());
 
 // Dev logging middleware
 if (process.env.NODE_ENV === "development") {
@@ -61,7 +62,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", index);
 app.use("/about", about);
 app.use("/events", events);
-app.use("/login", login);
+app.use("/membership", membership);
+app.use("/users", users);
 
 app.use(errorHandler);
 

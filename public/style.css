@@ -165,6 +165,28 @@ main p {
     margin-top: 20px;
 }
 
+main form {
+    padding: 30px 0;
+    display: grid;
+    grid-gap: 3rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+main form label {
+    display: block;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+main form input {
+    border-radius: 5px;
+    width: 300px;
+    height: 30px;
+    border: 1px solid black;
+    padding: 20px 10px;
+}
+
 .card-container {
     display: flex;
     flex-direction: column;
