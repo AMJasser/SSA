@@ -45,7 +45,7 @@
                 alertEl.style.transform = "translateY(0)";
             }
 
-            document.onload = {
+            window.onload = function() {
                 <% if (typeof msg === "string") { %>
                     flash("<%= msg %>");
                 <% } %>

@@ -6,11 +6,11 @@
         <section>
             <div>
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" value="<% if (typeof query.name === 'string') %><%= query.name %>">
             </div>
             <div>
                 <label for="email">GT Email</label>
-                <input type="text" name="email" id="email">
+                <input type="text" name="email" id="email" value="<% if (typeof query.email === 'string') %><%= query.email %>">
             </div>
             <div>
                 <label for="password">Password</label>

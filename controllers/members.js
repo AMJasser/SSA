@@ -6,7 +6,8 @@ const Member = require("../models/Member");
 // @route     GET /members
 // @access    Public
 exports.getMembership = asyncHandler(async (req, res, next) => {
-    res.status(200).render("membership", (err, html) => {
+    console.log(req.query.msg + "-----------------" + typeof req.query.msg);
+    res.status(200).render("membership", { query: req.query, msg: req.query.msg }, (err, html) => {
         if (err) {
             return next(new ErrorResponse("Problem Rendering", 500));
         } else {

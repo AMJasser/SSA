@@ -2,6 +2,7 @@ const ErrorResponse = require("../utils/errorResponse");
 
 const errorHandler = (err, req, res, next) => {
     let error = { ...err };
+    var params = [];
 
     error.message = err.message;
 
@@ -24,16 +25,18 @@ const errorHandler = (err, req, res, next) => {
         error = new ErrorResponse(message, 400);
     }
 
-    /*if (req.body) {
-        for (const [key, value] of Object.entries(req.body)) {
-            redirectUrl.searchParams.append(key, value);
+    if (req.body) {
+        if (req.body.password) {
+            delete req.body.password;
         }
-    }*/
+        for (const [key, value] of Object.entries(req.body)) {
+            params.push(key + "=" + value);
+        }
+    }
+
+    params.push("msg=" + error.message);
     
-    res.status(error.statusCode || 500).json({
-        success: false,
-        error: error.message || "Server Error",
-    });
+    res.status(error.statusCode || 500).redirect(req.url + "?" + params.join("&"));
 };
 
 module.exports = errorHandler;
