@@ -16,6 +16,15 @@ const MemberSchema = new mongoose.Schema({
             "Please add a valid email",
         ],
     },
+    phone: {
+        type: String,
+        required: [true, "Please add a phone number"],
+        unique: true,
+        match: [
+            /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
+            "Please add a valid phone number"
+        ]
+    },
     password: {
         type: String,
         required: [true, "Please add a password"],

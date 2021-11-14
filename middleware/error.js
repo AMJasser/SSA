@@ -16,7 +16,7 @@ const errorHandler = (err, req, res, next) => {
     }
     // Mongoose duplicate key
     if (err.code === 11000) {
-        const message = "Duplicate field value entered";
+        const message = "There is already a member with similar information";
         error = new ErrorResponse(message, 400);
     }
     // Mongoose validation error
