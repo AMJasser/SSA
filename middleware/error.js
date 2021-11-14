@@ -25,6 +25,10 @@ const errorHandler = (err, req, res, next) => {
         error = new ErrorResponse(message, 400);
     }
 
+    if (err.statusCode === 401) {
+        return res.status(401).redirect("/login");
+    }
+
     if (req.body) {
         if (req.body.password) {
             delete req.body.password;

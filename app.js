@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const methodOverride = require('method-override');
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const hpp = require("hpp");
@@ -20,10 +21,14 @@ const index = require("./routes/index");
 const about = require("./routes/about");
 const events = require("./routes/events");
 const members = require("./routes/members");
+const manage = require("./routes/manage");
 
 const app = express();
 
 app.set("view engine", "ejs");
+
+// ability to use all HTTP methods using method-override library
+app.use(methodOverride('_method'));
 
 // Body parser
 app.use(express.urlencoded());
@@ -62,6 +67,7 @@ app.use("/", index);
 app.use("/about", about);
 app.use("/events", events);
 app.use("/members", members);
+app.use("/manage", manage);
 
 app.use(errorHandler);
 
