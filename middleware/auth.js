@@ -51,7 +51,6 @@ exports.protect = asyncHandler(async (req, res, next) => {
 
 // Protect admin route
 exports.protectAdmin = asyncHandler(async (req, res, next) => {
-    console.log(req.user);
     if (req.user.isAdmin === false) {
         return next(
             new ErrorResponse(

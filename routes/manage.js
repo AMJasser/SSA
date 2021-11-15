@@ -15,11 +15,9 @@ router.use(protect, protectAdmin);
 router.get(
     "/",
     asyncHandler(async (req, res, next) => {
-        const unactivatedMembers = await Member.find({
-            isActivated: false
-        });
+        const members = await Member.find();
 
-        return res.status(200).render("manage", { unactivatedMembers, msg: req.query.msg, user: req.user }, (err, html) => {
+        return res.status(200).render("manage", { members, msg: req.query.msg, user: req.user }, (err, html) => {
             if (err) {
                 return next(new ErrorResponse("Problem Rendering", 500));
             } else {

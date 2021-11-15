@@ -10,7 +10,8 @@
                 <th>Phone</th>
                 <th>Actions</th>
             </tr>
-            <% unactivatedMembers.forEach(function(member) { %>
+            <% members.forEach(function(member) { %>
+                <% if (member.isActivated === false) { %>
                 <tr>
                     <td><%= member.name %></td>
                     <td><%= member.email %></td>
@@ -20,6 +21,30 @@
                         <form action="/members/<%= member._id %>?_method=DELETE" method="POST" enctype="application/x-www-form-urlencoded"><input type="submit" value="Delete"></form>
                     </td>
                 </tr>
+                <% } %>
+            <% }) %>
+        </table>
+    </section>
+    <section>
+        <h2>Members</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+            <% members.forEach(function(member) { %>
+                <% if (member.isActivated === true) { %>
+                <tr>
+                    <td><%= member.name %></td>
+                    <td><%= member.email %></td>
+                    <td><%= member.phone %></td>
+                    <td>
+                        <form action="/members/<%= member._id %>?_method=DELETE" method="POST" enctype="application/x-www-form-urlencoded" onsubmit="return confirm('Are you sure you want to DELETE <%= member.name %>?')"><input type="submit" value="Delete"></form>
+                    </td>
+                </tr>
+                <% } %>
             <% }) %>
         </table>
     </section>
