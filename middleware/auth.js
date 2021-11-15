@@ -14,10 +14,9 @@ exports.protect = asyncHandler(async (req, res, next) => {
         // Set token from Bearer token in header
         token = req.headers.authorization.split(" ")[1];
         // Set token from cookie
+    } else if (req.cookies.token) {
+        token = req.cookies.token;
     }
-    // else if (req.cookies.token) {
-    //   token = req.cookies.token;
-    // }
 
     // Make sure token exists
     if (!token) {
@@ -33,9 +32,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
         req.user = await Member.findById(decoded.id);
 
         if (req.user.isActivated === false) {
-            return next(
-                new ErrorResponse("Account not activated yet", 401)
-            );
+            return next(new ErrorResponse("Account not activated yet", 401));
         }
 
         next();
@@ -47,16 +44,14 @@ exports.protect = asyncHandler(async (req, res, next) => {
 });
 
 // Protect admin route
-exports.protectAdmin = () => {
-    return (req, res, next) => {
-        if (req.user.isAdmin === false) {
-            return next(
-                new ErrorResponse(
-                    `Member is not authorized to access this route`,
-                    403
-                )
-            );
-        }
-        next();
-    };
-};
+exports.protectAdmin = asyncHandler(async (req, res, next) => {
+    if (req.user.isAdmin === false) {
+        return next(
+            new ErrorResponse(
+                `Member is not authorized to access this route`,
+                403
+            )
+        );
+    }
+    next();
+});

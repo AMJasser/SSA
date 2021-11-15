@@ -8,6 +8,7 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cors = require("cors");
+const cookieParser = require('cookie-parser');
 const errorHandler = require("./middleware/error");
 const connectDB = require('./config/db');
 
@@ -22,6 +23,7 @@ const about = require("./routes/about");
 const events = require("./routes/events");
 const members = require("./routes/members");
 const manage = require("./routes/manage");
+const login = require("./routes/login");
 
 const app = express();
 
@@ -32,6 +34,9 @@ app.use(methodOverride('_method'));
 
 // Body parser
 app.use(express.urlencoded());
+
+// Cookie parser
+app.use(cookieParser());
 
 // Dev logging middleware
 if (process.env.NODE_ENV === "development") {
@@ -68,6 +73,7 @@ app.use("/about", about);
 app.use("/events", events);
 app.use("/members", members);
 app.use("/manage", manage);
+app.use("/login", login);
 
 app.use(errorHandler);
 

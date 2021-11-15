@@ -215,6 +215,8 @@ main form input {
     height: 30px;
     border: 1px solid black;
     padding: 20px 10px;
+    display: block;
+    margin: 10px auto;
 }
 
 main form input[type="submit"] {
@@ -227,7 +229,7 @@ main form input[type="submit"] {
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    margin: 20px 0;
+    margin: 20px auto;
 }
 
 .card-container {

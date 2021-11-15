@@ -7,8 +7,7 @@ const router = express.Router({ mergeParams: true });
 
 const { protect, protectAdmin } = require("../middleware/auth");
 
-router.use(protect);
-router.use(protectAdmin);
+router.use(protect, protectAdmin);
 
 // @desc      Get manage page
 // @route     GET /about
