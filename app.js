@@ -11,6 +11,7 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const errorHandler = require("./middleware/error");
 const connectDB = require('./config/db');
+const { checkAuth } = require("./middleware/auth")
 
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -66,6 +67,9 @@ app.use(function (req, res, next) {
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
+
+// Check if user is authenticated
+app.use(checkAuth);
 
 // Mount routers
 app.use("/", index);

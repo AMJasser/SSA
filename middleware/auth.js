@@ -3,8 +3,8 @@ const asyncHandler = require("./async");
 const ErrorResponse = require("../utils/errorResponse");
 const Member = require("../models/Member");
 
-// Protect routes
-exports.protect = asyncHandler(async (req, res, next) => {
+//Check if user is authenticated
+exports.checkAuth = asyncHandler(async (req, res, next) => {
     let token;
 
     if (
@@ -18,11 +18,8 @@ exports.protect = asyncHandler(async (req, res, next) => {
         token = req.cookies.token;
     }
 
-    // Make sure token exists
     if (!token) {
-        return next(
-            new ErrorResponse("Not authorized to access this route", 401)
-        );
+        return next();
     }
 
     try {
@@ -31,20 +28,30 @@ exports.protect = asyncHandler(async (req, res, next) => {
 
         req.user = await Member.findById(decoded.id);
 
-        if (req.user.isActivated === false) {
-            return next(new ErrorResponse("Account not activated yet", 401));
-        }
-
         next();
     } catch (err) {
+        return next();
+    }
+})
+
+// Protect routes
+exports.protect = asyncHandler(async (req, res, next) => {
+    if (!req.user) {
         return next(
             new ErrorResponse("Not authorized to access this route", 401)
         );
     }
+
+    if (req.user.isActivated === false) {
+        return next(new ErrorResponse("Account not activated yet", 401));
+    }
+
+    next();
 });
 
 // Protect admin route
 exports.protectAdmin = asyncHandler(async (req, res, next) => {
+    console.log(req.user);
     if (req.user.isAdmin === false) {
         return next(
             new ErrorResponse(

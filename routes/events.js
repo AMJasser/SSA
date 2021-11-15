@@ -10,7 +10,7 @@ const router = express.Router({ mergeParams: true });
 router.get(
     "/",
     asyncHandler(async (req, res, next) => {
-        return res.status(200).render("events", (err, html) => {
+        return res.status(200).render("events", { msg: req.query.msg, user: req.user }, (err, html) => {
             if (err) {
                 return next(new ErrorResponse("Problem Rendering", 500));
             } else {

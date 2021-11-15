@@ -8,7 +8,7 @@ const Member = require("../models/Member");
 exports.getLogin = asyncHandler(async (req, res, next) => {
     res.status(200).render(
         "login",
-        { query: req.query, msg: req.query.msg },
+        { query: req.query, msg: req.query.msg, user: req.user },
         (err, html) => {
             if (err) {
                 return next(new ErrorResponse("Problem Rendering", 500));

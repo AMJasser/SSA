@@ -19,7 +19,7 @@ router.get(
             isActivated: false
         });
 
-        return res.status(200).render("manage", { unactivatedMembers, msg: req.query.msg }, (err, html) => {
+        return res.status(200).render("manage", { unactivatedMembers, msg: req.query.msg, user: req.user }, (err, html) => {
             if (err) {
                 return next(new ErrorResponse("Problem Rendering", 500));
             } else {
