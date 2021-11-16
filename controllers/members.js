@@ -1,18 +1,13 @@
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
+const viewResponse = require("../utils/viewResponse");
 const Member = require("../models/Member");
 
 // @desc      Get membership page
 // @route     GET /members
 // @access    Public
 exports.getMembership = asyncHandler(async (req, res, next) => {
-    res.status(200).render("membership", { query: req.query, msg: req.query.msg, user: req.user }, (err, html) => {
-        if (err) {
-            return next(new ErrorResponse("Problem Rendering", 500));
-        } else {
-            res.send(html);
-        }
-    });
+    viewResponse(req, res, "membership");
 });
 
 // @desc      Create member

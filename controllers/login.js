@@ -1,22 +1,13 @@
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
+const viewResponse = require("../utils/viewResponse");
 const Member = require("../models/Member");
 
 // @desc      Get login page
 // @route     GET /login
 // @access    Public
 exports.getLogin = asyncHandler(async (req, res, next) => {
-    res.status(200).render(
-        "login",
-        { query: req.query, msg: req.query.msg, user: req.user },
-        (err, html) => {
-            if (err) {
-                return next(new ErrorResponse("Problem Rendering", 500));
-            } else {
-                res.send(html);
-            }
-        }
-    );
+    viewResponse(req, res, "login");
 });
 
 // @desc      Login user
@@ -53,15 +44,12 @@ exports.login = asyncHandler(async (req, res, next) => {
         expires: new Date(
             Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
         ),
-        httpOnly: true
-    }
+        httpOnly: true,
+    };
 
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === "production") {
         options.secure = true;
     }
 
-    res
-        .status(200)
-        .cookie("token", token, options)
-        .redirect("/");
+    res.status(200).cookie("token", token, options).redirect("/");
 });
