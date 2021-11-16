@@ -7,7 +7,7 @@ const Member = require("../models/Member");
 // @route     GET /members
 // @access    Public
 exports.getMembership = asyncHandler(async (req, res, next) => {
-    viewResponse(req, res, "membership");
+    viewResponse(req, res, next, "membership");
 });
 
 // @desc      Create member

@@ -7,7 +7,7 @@ const Member = require("../models/Member");
 // @route     GET /login
 // @access    Public
 exports.getLogin = asyncHandler(async (req, res, next) => {
-    viewResponse(req, res, "login");
+    viewResponse(req, res, next, "login");
 });
 
 // @desc      Login user

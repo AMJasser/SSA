@@ -3,6 +3,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const viewResponse = require("../utils/viewResponse");
 const Member  = require("../models/Member");
+const Event = require("../models/Event");
 
 const router = express.Router({ mergeParams: true });
 
@@ -17,8 +18,9 @@ router.get(
     "/",
     asyncHandler(async (req, res, next) => {
         const members = await Member.find();
+        const events = await Event.find();
 
-        viewResponse(req, res, "manage", { members });
+        viewResponse(req, res, next, "manage", { members, events });
     })
 );
 

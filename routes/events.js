@@ -1,20 +1,24 @@
 const express = require('express');
 const {
     getEvents,
-    createEvent
+    createEvent,
+    deleteEvent
 } = require("../controllers/events")
 
 const router = express.Router({ mergeParams: true });
 
-const { protect } = require("../middleware/auth");
+const { protect, protectAdmin } = require("../middleware/auth");
 const upload = require("../middleware/upload");
 
 router
     .route("/")
     .get(getEvents)
-    .post(upload.fields([
+    .post(protect, protectAdmin, upload.fields([
         { name: "mainPhoto", maxCount: 1 },
         { name: "photo" }
-    ]), createEvent);
+    ]), createEvent)
+
+router
+    .delete("/:id", protect, protectAdmin, deleteEvent);
 
 module.exports = router;

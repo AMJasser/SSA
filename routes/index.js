@@ -11,7 +11,7 @@ const router = express.Router({ mergeParams: true });
 router.get(
     "/",
     asyncHandler(async (req, res, next) => {
-        viewResponse(req, res, "index");
+        viewResponse(req, res, next, "index");
     })
 );
 

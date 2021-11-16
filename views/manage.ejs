@@ -1,6 +1,7 @@
 <%- include ("partials/header") %>
 
 <main>
+    <% if (typeof members === 'object') { %>
     <section>
         <h2>Approve Members</h2>
         <table>
@@ -10,8 +11,8 @@
                 <th>Phone</th>
                 <th>Actions</th>
             </tr>
-            <% members.forEach(function(member) { %> <% if (member.isActivated
-            === false) { %>
+            <% members.forEach(function(member) { %>
+            <% if (member.isActivated === false) { %>
             <tr>
                 <td><%= member.name %></td>
                 <td><%= member.email %></td>
@@ -37,7 +38,8 @@
                     </form>
                 </td>
             </tr>
-            <% } %> <% }) %>
+            <% } %>
+            <% }) %>
         </table>
     </section>
     <section>
@@ -49,8 +51,8 @@
                 <th>Phone</th>
                 <th>Actions</th>
             </tr>
-            <% members.forEach(function(member) { %> <% if (member.isActivated
-            === true) { %>
+            <% members.forEach(function(member) { %> 
+            <% if (member.isActivated === true) { %>
             <tr>
                 <td><%= member.name %></td>
                 <td><%= member.email %></td>
@@ -66,9 +68,11 @@
                     </form>
                 </td>
             </tr>
-            <% } %> <% }) %>
+            <% } %>
+            <% }) %>
         </table>
     </section>
+    <% } %>
     <section>
         <h2>Create an Event</h2>
         <form action="/events" method="POST" enctype="multipart/form-data">
@@ -85,7 +89,7 @@
                 <div>
                     <label for="date">Date</label>
                     <input
-                        type="date"
+                        type="datetime-local"
                         name="date"
                         id="date"
                         value="<% if (typeof query.date === 'string') %><%= query.date %>"
@@ -137,6 +141,34 @@
             <input type="submit" />
         </form>
     </section>
+    <% if (typeof events === 'object') { %>
+    <section>
+        <h2>Events</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Location</th>
+            </tr>
+            <% events.forEach(function(event) { %>
+            <tr>
+                <td><%= event.name %></td>
+                <td><%= event.date %></td>
+                <td><%= event.location %></td>
+                <td>
+                    <form
+                        action="/events/<%= event._id %>?_method=DELETE"
+                        method="POST"
+                        enctype="application/x-www-form-urlencoded"
+                    >
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+        </table>
+    </section>
+    <% } %>
 </main>
 
 <%- include ("partials/footer") %>

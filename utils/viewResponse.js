@@ -1,6 +1,6 @@
 const ErrorResponse = require("./errorResponse");
 
-const viewResponse = (req, res, view, passedLocals) => {
+const viewResponse = (req, res, next, view, passedLocals) => {
     const locals = {
         query: req.query,
         msg: req.query.msg,
