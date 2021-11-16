@@ -20,7 +20,15 @@ const EventSchema = new mongoose.Schema({
     photos: [{
         type: String,
         default: "no-img.png"
-    }]
+    }],
+    mainPhoto: {
+        type: String,
+        default: "no-img.png"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    }
 });
 
 module.exports = mongoose.model('Event', EventSchema);

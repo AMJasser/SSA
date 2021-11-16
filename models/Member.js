@@ -42,7 +42,7 @@ const MemberSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-    },
+    }
 });
 
 // Encrypt password using bcrypt

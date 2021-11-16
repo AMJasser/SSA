@@ -14,7 +14,7 @@ exports.getMembership = asyncHandler(async (req, res, next) => {
 // @route     POST /members
 // @access    Public
 exports.createMember = asyncHandler(async (req, res, next) => {
-    const member = await Member.create(req.body);
+    await Member.create(req.body);
 
     res.status(201).redirect("/");
 });

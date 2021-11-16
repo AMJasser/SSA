@@ -10,19 +10,34 @@
                 <th>Phone</th>
                 <th>Actions</th>
             </tr>
-            <% members.forEach(function(member) { %>
-                <% if (member.isActivated === false) { %>
-                <tr>
-                    <td><%= member.name %></td>
-                    <td><%= member.email %></td>
-                    <td><%= member.phone %></td>
-                    <td>
-                        <form action="/members/<%= member._id %>?_method=PUT" method="POST" enctype="application/x-www-form-urlencoded"><input type="hidden" name="isActivated" value="true"><input type="submit" value="Activate"></form>
-                        <form action="/members/<%= member._id %>?_method=DELETE" method="POST" enctype="application/x-www-form-urlencoded"><input type="submit" value="Delete"></form>
-                    </td>
-                </tr>
-                <% } %>
-            <% }) %>
+            <% members.forEach(function(member) { %> <% if (member.isActivated
+            === false) { %>
+            <tr>
+                <td><%= member.name %></td>
+                <td><%= member.email %></td>
+                <td><%= member.phone %></td>
+                <td>
+                    <form
+                        action="/members/<%= member._id %>?_method=PUT"
+                        method="POST"
+                        enctype="application/x-www-form-urlencoded"
+                    >
+                        <input
+                            type="hidden"
+                            name="isActivated"
+                            value="true"
+                        /><input type="submit" value="Activate" />
+                    </form>
+                    <form
+                        action="/members/<%= member._id %>?_method=DELETE"
+                        method="POST"
+                        enctype="application/x-www-form-urlencoded"
+                    >
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+            <% } %> <% }) %>
         </table>
     </section>
     <section>
@@ -34,19 +49,93 @@
                 <th>Phone</th>
                 <th>Actions</th>
             </tr>
-            <% members.forEach(function(member) { %>
-                <% if (member.isActivated === true) { %>
-                <tr>
-                    <td><%= member.name %></td>
-                    <td><%= member.email %></td>
-                    <td><%= member.phone %></td>
-                    <td>
-                        <form action="/members/<%= member._id %>?_method=DELETE" method="POST" enctype="application/x-www-form-urlencoded" onsubmit="return confirm('Are you sure you want to DELETE <%= member.name %>?')"><input type="submit" value="Delete"></form>
-                    </td>
-                </tr>
-                <% } %>
-            <% }) %>
+            <% members.forEach(function(member) { %> <% if (member.isActivated
+            === true) { %>
+            <tr>
+                <td><%= member.name %></td>
+                <td><%= member.email %></td>
+                <td><%= member.phone %></td>
+                <td>
+                    <form
+                        action="/members/<%= member._id %>?_method=DELETE"
+                        method="POST"
+                        enctype="application/x-www-form-urlencoded"
+                        onsubmit="return confirm('Are you sure you want to DELETE <%= member.name %>?')"
+                    >
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+            <% } %> <% }) %>
         </table>
+    </section>
+    <section>
+        <h2>Create an Event</h2>
+        <form action="/events" method="POST" enctype="multipart/form-data">
+            <section>
+                <div>
+                    <label for="name">Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        value="<% if (typeof query.name === 'string') %><%= query.name %>"
+                    />
+                </div>
+                <div>
+                    <label for="date">Date</label>
+                    <input
+                        type="date"
+                        name="date"
+                        id="date"
+                        value="<% if (typeof query.date === 'string') %><%= query.date %>"
+                    />
+                </div>
+                <div>
+                    <label for="location">Location</label>
+                    <input
+                        type="text"
+                        name="location"
+                        id="location"
+                        value="<% if (typeof query.location === 'string') %><%= query.location %>"
+                    />
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <input
+                        type="text"
+                        name="description"
+                        id="description"
+                        value="<% if (typeof query.description === 'string') %><%= query.description %>"
+                    />
+                </div>
+                <div>
+                    <label for="mainPhoto">Main Photo</label>
+                    <input
+                        type="file"
+                        name="mainPhoto"
+                        id="mainPhoto"
+                    />
+                </div>
+                <div>
+                    <label for="photo">Photo</label>
+                    <input
+                        type="file"
+                        name="photo"
+                        id="photo"
+                    />
+                </div>
+                <div>
+                    <label for="photo">Photo</label>
+                    <input
+                        type="file"
+                        name="photo"
+                        id="photo"
+                    />
+                </div>
+            </section>
+            <input type="submit" />
+        </form>
     </section>
 </main>
 

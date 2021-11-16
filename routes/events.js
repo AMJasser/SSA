@@ -1,18 +1,20 @@
-const express = require("express");
-const ErrorResponse = require("../utils/errorResponse");
-const viewResponse = require("../utils/viewResponse");
-const asyncHandler = require("../middleware/async");
+const express = require('express');
+const {
+    getEvents,
+    createEvent
+} = require("../controllers/events")
 
 const router = express.Router({ mergeParams: true });
 
-// @desc      Get events page
-// @route     GET /events
-// @access    Public
-router.get(
-    "/",
-    asyncHandler(async (req, res, next) => {
-        viewResponse(req, res, "events");
-    })
-);
+const { protect } = require("../middleware/auth");
+const upload = require("../middleware/upload");
+
+router
+    .route("/")
+    .get(getEvents)
+    .post(upload.fields([
+        { name: "mainPhoto", maxCount: 1 },
+        { name: "photo" }
+    ]), createEvent);
 
 module.exports = router;
