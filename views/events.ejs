@@ -14,8 +14,21 @@
                     <h3><%= event.name %></h3>
                     <%
                         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                        let suffix;
+                        let minutes;
+                        if (event.date.getHours() >= 12) {
+                            suffix = 'PM'
+                        } else {
+                            suffix = 'AM'
+                        }
+
+                        if (event.date.getMinutes() === 0) {
+                            minutes = '00';
+                        } else {
+                            minutes = event.date.getMinutes();
+                        }
                     %>
-                    <h6><%= monthNames[event.date.getMonth()] %> <%= event.date.getDate() %>, <%= event.date.getFullYear() %> <%= event.date.getHours() - 12 %>:<%= event.date.getMinutes() %> at <%= event.location %></h6>
+                    <h6><%= monthNames[event.date.getMonth()] %> <%= event.date.getDate() %>, <%= event.date.getFullYear() %> <%= event.date.getHours() - 12 %>:<%= minutes %> <%= suffix %> at <%= event.location %></h6>
                     <p>
                         <%= event.description %>
                     </p>
@@ -23,6 +36,12 @@
                 <div class="overlay">
                     <div>
                         <h3>Event Photos</h3>
+                        <h4>Attendees</h3>
+                        <div class="rsvp">
+                            <% event.attendees.forEach(function(attendee) { %>
+                                <span><%= attendee.name %></span>
+                            <% }) %>
+                        </div>
                         <section>
                             <% event.photos.forEach(function(photo) { %>
                                 <div style="background-image: url('/uploads/<%= photo %>');"></div>
