@@ -58,6 +58,31 @@
                 <td><%= member.email %></td>
                 <td><%= member.phone %></td>
                 <td>
+                    <% if (member.isAdmin === false) { %>
+                    <form
+                        action="/members/<%= member._id %>?_method=PUT"
+                        method="POST"
+                        enctype="application/x-www-form-urlencoded"
+                    >
+                        <input
+                            type="hidden"
+                            name="isAdmin"
+                            value="true"
+                        /><input type="submit" value="Make Admin" />
+                    </form>
+                    <% } else { %>
+                        <form
+                        action="/members/<%= member._id %>?_method=PUT"
+                        method="POST"
+                        enctype="application/x-www-form-urlencoded"
+                    >
+                        <input
+                            type="hidden"
+                            name="isAdmin"
+                            value="false"
+                        /><input type="submit" value="Remove Admin" />
+                    </form>
+                    <% } %>
                     <form
                         action="/members/<%= member._id %>?_method=DELETE"
                         method="POST"

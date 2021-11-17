@@ -332,7 +332,7 @@ main form input[type="submit"] {
     display: flex;
 }
 
-.card .overlay div {
+.card .overlay > div {
     width: 90%;
     height: 80%;
     background: #ffffff;
@@ -352,6 +352,23 @@ main form input[type="submit"] {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     overflow-y: scroll;
     max-height: calc(100% - 59px);
+}
+
+.card .overlay .rsvp {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    margin: 10px 0 50px 0;
+}
+
+.card .overlay .rsvp span {
+    display: inline-block;
+    background-color: #DCDCDC;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    width: 100px;
+    text-align: center;
 }
 
 .card .overlay section div {

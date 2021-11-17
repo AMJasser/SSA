@@ -7,7 +7,7 @@ const Event = require("../models/Event");
 // @route     GET /events
 // @access    Public
 exports.getEvents = asyncHandler(async (req, res, next) => {
-    const events = await Event.find();
+    const events = await Event.find().populate("attendees");
     const pastEvents = [];
     const upcomingEvents = [];
     const now = new Date();
@@ -24,12 +24,29 @@ exports.getEvents = asyncHandler(async (req, res, next) => {
 });
 
 // @desc      Add user to event attendees
-// @route     POST /events/:id/attend
+// @route     POST /events/:id/rsvp
 // @access    Private/Any
-exports.attend = asyncHandler(async (req, res, next) => {
+exports.rsvp = asyncHandler(async (req, res, next) => {
     let event = await Event.findById(req.params.id);
 
     event.attendees.push(req.user._id);
+
+    event.save();
+
+    res.status(200).redirect("/events");
+});
+
+// @desc      remove user from event attendees
+// @route     POST /events/:id/dersvp
+// @access    Private/Any
+exports.dersvp = asyncHandler(async (req, res, next) => {
+    let event = await Event.findById(req.params.id).populate("attendees");
+
+    for (var i = 0; i < event.attendees.length; i++) {
+        if (event.attendees[i]._id.toString() === req.user._id.toString()) {
+            event.attendees.splice(i, 1);
+        }
+    }
 
     event.save();
 

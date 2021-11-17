@@ -69,9 +69,21 @@
                     <div class="overlay">
                         <div>
                             <h3>Event Photos</h3>
-                            <form action="/events/<%= event._id %>/attend" method="POST" enctype="application/x-www-form-urlencoded">
-                                <input type="submit">
-                            </form>
+                            <% if (event.attendees.some(e => e._id.toString() === user._id.toString())) { %>
+                                <form action="/events/<%= event._id %>/dersvp" method="POST" enctype="application/x-www-form-urlencoded">
+                                    <input type="submit" value="DERSVP">
+                                </form>
+                            <% } else { %>
+                                <form action="/events/<%= event._id %>/rsvp" method="POST" enctype="application/x-www-form-urlencoded">
+                                    <input type="submit" value="RSVP">
+                                </form>
+                            <% } %>
+                            <h4>Attendees</h3>
+                            <div class="rsvp">
+                                <% event.attendees.forEach(function(attendee) { %>
+                                    <span><%= attendee.name %></span>
+                                <% }) %>
+                            </div>
                             <section>
                                 <% event.photos.forEach(function(photo) { %>
                                     <div style="background-image: url('/uploads/<%= photo %>');"></div>

@@ -3,7 +3,8 @@ const {
     getEvents,
     createEvent,
     deleteEvent,
-    attend
+    rsvp,
+    dersvp
 } = require("../controllers/events")
 
 const router = express.Router({ mergeParams: true });
@@ -23,6 +24,9 @@ router
     .delete("/:id", protect, protectAdmin, deleteEvent);
 
 router
-    .post("/:id/attend", protect, attend);
+    .post("/:id/rsvp", protect, rsvp);
+
+router
+    .post("/:id/dersvp", dersvp);
 
 module.exports = router;
