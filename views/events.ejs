@@ -80,7 +80,9 @@
                                     </form>
                                 <% } %>
                             <% } else { %>
-                                <a href="/login">LOGIN to RSVP</a>
+                                <form action="/login" method="GET">
+                                    <input type="submit" value="LOGIN to RSVP">
+                                </form>
                             <% } %>
                             <h4>Attendees</h3>
                             <div class="rsvp">
