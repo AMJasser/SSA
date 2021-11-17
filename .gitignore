@@ -3,3 +3,4 @@ config/config.env
 .eslintrc.json
 public/uploads/*
 !public/uploads/no-img.png
+ideas.txt

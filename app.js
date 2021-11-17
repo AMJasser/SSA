@@ -25,6 +25,7 @@ const events = require("./routes/events");
 const members = require("./routes/members");
 const manage = require("./routes/manage");
 const login = require("./routes/login");
+const logout = require("./routes/logout");
 
 const app = express();
 
@@ -78,6 +79,7 @@ app.use("/events", events);
 app.use("/members", members);
 app.use("/manage", manage);
 app.use("/login", login);
+app.use("/logout", logout);
 
 app.use(errorHandler);
 
