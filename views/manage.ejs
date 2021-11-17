@@ -165,6 +165,8 @@
             </section>
             <input type="submit" />
         </form>
+        <button onclick="addPhoto()">Add Photo</button>
+        <button onclick="removePhoto()">Remove Photo</button>
     </section>
     <% if (typeof events === 'object') { %>
     <section>
@@ -195,5 +197,30 @@
     </section>
     <% } %>
 </main>
+
+<script type="text/javascript">
+    function addPhoto() {
+        let photoEl = document.createElement("input");
+        let labelEl = document.createElement("label");
+        let divEl = document.createElement("div");
+
+        photoEl.type = "file";
+        photoEl.name = "photo";
+        photoEl.id = "photo";
+
+        labelEl.setAttribute("for", "photo");
+        labelEl.innerHTML = "Photo"
+
+        divEl.appendChild(labelEl);
+        divEl.appendChild(photoEl);
+
+        document.querySelector("form[action='/events'] > section").appendChild(divEl)
+    }
+
+    function removePhoto() {
+        query = document.querySelectorAll("form[action='/events'] input[name='photo']");
+        query[query.length - 1].parentNode.remove();
+    }
+</script>
 
 <%- include ("partials/footer") %>
