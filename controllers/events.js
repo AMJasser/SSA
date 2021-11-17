@@ -23,6 +23,19 @@ exports.getEvents = asyncHandler(async (req, res, next) => {
     viewResponse(req, res, next, "events", { pastEvents, upcomingEvents });
 });
 
+// @desc      Add user to event attendees
+// @route     POST /events/:id/attend
+// @access    Private/Any
+exports.attend = asyncHandler(async (req, res, next) => {
+    let event = await Event.findById(req.params.id);
+
+    event.attendees.push(req.user._id);
+
+    event.save();
+
+    res.status(200).redirect("/events");
+});
+
 // @desc      Create new event
 // @route     POST /events
 // @access    Private/admin

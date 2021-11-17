@@ -2,7 +2,8 @@ const express = require('express');
 const {
     getEvents,
     createEvent,
-    deleteEvent
+    deleteEvent,
+    attend
 } = require("../controllers/events")
 
 const router = express.Router({ mergeParams: true });
@@ -20,5 +21,8 @@ router
 
 router
     .delete("/:id", protect, protectAdmin, deleteEvent);
+
+router
+    .post("/:id/attend", protect, attend);
 
 module.exports = router;
