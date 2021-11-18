@@ -191,6 +191,10 @@ main p {
     margin-top: 20px;
 }
 
+main img {
+    width: 300px;
+}
+
 main form {
     text-align: center;
 }
@@ -200,6 +204,16 @@ main form section {
     display: grid;
     grid-gap: 3rem;
     grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (max-width: 850px) {
+    main form section {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        text-align: center;
+    }
 }
 
 main form label {
@@ -230,6 +244,12 @@ main form input[type="submit"] {
     font-weight: bold;
     cursor: pointer;
     margin: 20px auto;
+}
+
+@media only screen and (max-width: 500px) {
+    main form input {
+        width: 200px;
+    }
 }
 
 .card-container {
@@ -269,6 +289,22 @@ main form input[type="submit"] {
     transition: all 0.5s ease-in-out;
 }
 
+.card .showimg {
+    min-width: 100%;
+}
+
+@media only screen and (max-width: 900px) {
+    .card .img {
+        min-width: 100px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .card .img {
+        min-width: 0;
+    }
+}
+
 .card .text {
     padding: 20px 50px;
     overflow: hidden;
@@ -280,6 +316,12 @@ main form input[type="submit"] {
 
 .card .text h6 {
     margin: 5px 0 30px 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .card .text {
+        padding: 5px 10px;
+    }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -338,6 +380,7 @@ main form input[type="submit"] {
     background: #ffffff;
     border-radius: 5px;
     padding: 30px;
+    overflow: hidden;
 }
 
 .card .overlay h3 {
@@ -352,6 +395,7 @@ main form input[type="submit"] {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     overflow-y: scroll;
     max-height: calc(100% - 59px);
+    padding-bottom: 100px;
 }
 
 .card .overlay .rsvp {

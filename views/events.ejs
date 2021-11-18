@@ -126,9 +126,9 @@
         x.childNodes[5].classList.toggle("show");
         document.documentElement.classList.toggle("stop-scroll")
         if (x.childNodes[1].style.minWidth === "100%") {
-            x.childNodes[1].style.minWidth = "400px"
+            x.childNodes[1].classList.remove("showimg");
         } else {
-            x.childNodes[1].style.minWidth = "100%"
+            x.childNodes[1].classList.add("showimg");
         }
     }
 
@@ -146,9 +146,8 @@
                 .forEach((div) => {
                     div.classList.remove("show");
                     document.documentElement.classList.remove("stop-scroll");
-
                 });
-            document.querySelector(".card .img").style.minWidth = "400px"
+            document.querySelector(".card .img").classList.remove("showimg");
         }
     };
 </script>
