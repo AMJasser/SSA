@@ -16,10 +16,14 @@
                         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                         let suffix;
                         let minutes;
+                        let hours;
+
                         if (event.date.getHours() >= 12) {
                             suffix = 'PM'
+                            hours = event.date.getHours() - 12;
                         } else {
                             suffix = 'AM'
+                            hours = event.date.getHours();
                         }
 
                         if (event.date.getMinutes() === 0) {
@@ -28,7 +32,7 @@
                             minutes = event.date.getMinutes();
                         }
                     %>
-                    <h6><%= monthNames[event.date.getMonth()] %> <%= event.date.getDate() %>, <%= event.date.getFullYear() %> <%= event.date.getHours() - 12 %>:<%= minutes %> <%= suffix %> at <%= event.location %></h6>
+                    <h6><%= monthNames[event.date.getMonth()] %> <%= event.date.getDate() %>, <%= event.date.getFullYear() %> <%= hours %>:<%= minutes %> <%= suffix %> at <%= event.location %></h6>
                     <p>
                         <%= event.description %>
                     </p>
@@ -68,10 +72,14 @@
                             const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                             let suffix;
                             let minutes;
+                            let hours;
+
                             if (event.date.getHours() >= 12) {
                                 suffix = 'PM'
+                                hours = event.date.getHours() - 12;
                             } else {
                                 suffix = 'AM'
+                                hours = event.date.getHours();
                             }
 
                             if (event.date.getMinutes() === 0) {
@@ -80,7 +88,7 @@
                                 minutes = event.date.getMinutes();
                             }
                         %>
-                        <h6><%= monthNames[event.date.getMonth()] %> <%= event.date.getDate() %>, <%= event.date.getFullYear() %> <%= event.date.getHours() - 12 %>:<%= minutes %> <%= suffix %> at <%= event.location %></h6>
+                        <h6><%= monthNames[event.date.getMonth()] %> <%= event.date.getDate() %>, <%= event.date.getFullYear() %> <%= hours %>:<%= minutes %> <%= suffix %> at <%= event.location %></h6>
                         <p>
                             <%= event.description %>
                         </p>

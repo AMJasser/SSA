@@ -86,3 +86,58 @@ exports.deleteEvent = asyncHandler(async (req, res, next) => {
 
     res.status(201).redirect("/manage");
 });
+
+// @desc      Get page edit page
+// @route     GET /events/:id/edit
+// @access    Private
+exports.getEditEvent = asyncHandler(async (req, res, next) => {
+    const event = await Event.findById(req.params.id);
+
+    if (!event) {
+        return next(
+            new ErrorResponse(`Event not found`)
+        );
+    }
+
+    viewResponse(req, res, next, "editEvent", { event });
+});
+
+// @desc      Edit event
+// @route     PUT /events/:id
+// @access    Private
+exports.editEvent = asyncHandler(async (req, res, next) => {
+    let event = await Event.findById(req.params.id);
+
+    if (!event) {
+        return next(
+            new ErrorResponse(`Event not found`)
+        );
+    }
+
+    const changeMainPhoto = req.body.changeMainPhoto;
+    const changePhotos = req.body.changePhotos;
+
+    delete req.body.changeMainPhoto;
+    delete req.body.changePhotos;
+
+    if (changeMainPhoto === "yes") {
+        req.body.mainPhoto = req.files.mainPhoto[0].filename;
+    }
+
+    if (changePhotos === "yes") {
+        event.deletePhotos();
+        req.body.photos = [];
+
+        req.files.photo.forEach(function(photo) {
+            req.body.photos.push(photo.filename);
+        });
+    }
+
+    Object.keys(req.body).forEach(function(key) {
+        event[key] = req.body[key];
+    });
+
+    event.save();
+
+    res.status(200).redirect("/");
+});

@@ -4,7 +4,10 @@ const {
     createEvent,
     deleteEvent,
     rsvp,
-    dersvp
+    dersvp,
+    getEditEvent,
+    editEvent,
+    deletePicture
 } = require("../controllers/events")
 
 const router = express.Router({ mergeParams: true });
@@ -21,12 +24,20 @@ router
     ]), createEvent)
 
 router
-    .delete("/:id", protect, protectAdmin, deleteEvent);
+    .route("/:id")
+    .delete(protect, protectAdmin, deleteEvent)
+    .put(protect, protectAdmin, upload.fields([
+        { name: "mainPhoto", maxCount: 1 },
+        { name: "photo" }
+    ]), editEvent);
 
 router
     .post("/:id/rsvp", protect, rsvp);
 
 router
-    .post("/:id/dersvp", dersvp);
+    .post("/:id/dersvp", protect, dersvp);
+
+router
+    .get("/:id/edit", protect, protectAdmin, getEditEvent);
 
 module.exports = router;
