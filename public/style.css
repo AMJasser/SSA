@@ -421,6 +421,7 @@ main form input[type="submit"] {
     border-radius: 5px;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 main > section {
