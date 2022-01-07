@@ -3,7 +3,8 @@ const {
     getMembership,
     createMember,
     updateMember,
-    deleteMember
+    deleteMember,
+    exportMembers
 } = require("../controllers/members")
 
 const router = express.Router({ mergeParams: true });
@@ -19,5 +20,8 @@ router
     .route("/:id")
     .put(protect, protectAdmin, updateMember)
     .delete(protect, protectAdmin, deleteMember);
+
+router
+    .get("/export", protect, protectAdmin, exportMembers)
 
 module.exports = router;
