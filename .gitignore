@@ -4,3 +4,4 @@ config/config.env
 public/uploads/*
 !public/uploads/no-img.png
 ideas.txt
+public/users.xlsx
