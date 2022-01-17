@@ -33,7 +33,7 @@ header nav {
 }
 
 header nav a {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     color: white;
     text-decoration: none;
@@ -199,11 +199,19 @@ main form {
     text-align: center;
 }
 
-main form section {
+main form section, main .grid-section {
     padding: 30px 0;
     display: grid;
     grid-gap: 3rem;
     grid-template-columns: 1fr 1fr;
+    margin: unset;
+    border-radius: unset;
+    box-shadow: none;
+    width: auto;
+}
+
+main .grid-section {
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 @media only screen and (max-width: 850px) {
@@ -213,6 +221,18 @@ main form section {
 
     main {
         text-align: center;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    main .grid-section {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    main .grid-section {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -430,6 +450,10 @@ main > section {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 10px;
     margin: 50px 0;
+}
+
+main > section div {
+    text-align: center;
 }
 
 main > section table {
