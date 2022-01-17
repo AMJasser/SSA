@@ -21,6 +21,7 @@ connectDB();
 
 const index = require("./routes/index");
 const about = require("./routes/about");
+const team = require("./routes/team");
 const events = require("./routes/events");
 const members = require("./routes/members");
 const manage = require("./routes/manage");
@@ -75,6 +76,7 @@ app.use(checkAuth);
 // Mount routers
 app.use("/", index);
 app.use("/about", about);
+app.use("/team", team);
 app.use("/events", events);
 app.use("/members", members);
 app.use("/manage", manage);
