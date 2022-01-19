@@ -20,12 +20,9 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 
 const index = require("./routes/index");
-const about = require("./routes/about");
-const team = require("./routes/team");
 const events = require("./routes/events");
 const contact = require("./routes/contact");
 const members = require("./routes/members");
-const manage = require("./routes/manage");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
 
@@ -76,12 +73,9 @@ app.use(checkAuth);
 
 // Mount routers
 app.use("/", index);
-app.use("/about", about);
-app.use("/team", team);
 app.use("/events", events);
 app.use("/contact", contact);
 app.use("/members", members);
-app.use("/manage", manage);
 app.use("/login", login);
 app.use("/logout", logout);
 
