@@ -4,6 +4,7 @@ const asyncHandler = require("../middleware/async");
 const viewResponse = require("../utils/viewResponse");
 const Member  = require("../models/Member");
 const Event = require("../models/Event");
+const Contact = require("../models/Contact");
 
 const router = express.Router({ mergeParams: true });
 
@@ -19,8 +20,9 @@ router.get(
     asyncHandler(async (req, res, next) => {
         const members = await Member.find();
         const events = await Event.find();
+        const contacts = await Contact.find();
 
-        viewResponse(req, res, next, "manage", { members, events });
+        viewResponse(req, res, next, "manage", { members, events, contacts });
     })
 );
 

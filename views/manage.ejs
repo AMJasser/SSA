@@ -189,6 +189,28 @@
         </table>
     </section>
     <section>
+        <h2>Contacts Us</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+            </tr>
+            <% contacts.forEach(function(contact) { %>
+            <tr>
+                <td><%= contact.name %></td>
+                <td><%= contact.email %></td>
+                <td><%= contact.message %></td>
+                <td>
+                    <form action="/contact/<%= contact._id %>?_method=DELETE" method="POST" enctype="application/x-www-form-urlencoded">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+        </table>
+    </section>
+    <section>
         <h2>Events</h2>
         <form
             action="/members/export"

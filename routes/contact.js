@@ -28,4 +28,24 @@ router.post(
     })
 );
 
+// @desc      Delete contact
+// @route     POST /contact/:id
+// @access    Public
+router.delete(
+    "/:id/",
+    asyncHandler(async (req, res, next) => {
+        const contact = await Contact.findById(req.params.id);
+
+        if (!contact) {
+            return next(
+                new ErrorResponse(`Contact not found`)
+            );
+        }
+
+        contact.remove();
+
+        res.status(201).redirect("/manage");
+    })
+);
+
 module.exports = router;
