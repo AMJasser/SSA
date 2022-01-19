@@ -53,3 +53,15 @@ exports.login = asyncHandler(async (req, res, next) => {
 
     res.status(200).cookie("token", token, options).redirect("/");
 });
+
+// @desc      Logout User
+// @route     GET /logout
+// @access    Private
+exports.logout = asyncHandler(async (req, res, next) => {
+    res.cookie("token", "none", {
+        expires: new Date(Date.now() + 10 * 1000),
+        httpOnly: true,
+    });
+
+    res.status(200).redirect("/");
+});

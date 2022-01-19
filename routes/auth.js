@@ -1,14 +1,17 @@
 const express = require('express');
 const {
     getLogin,
-    login
-} = require("../controllers/login")
+    login,
+    logout
+} = require("../controllers/auth")
 
 const router = express.Router({ mergeParams: true });
 
 router
-    .route("/")
+    .route("/login")
     .get(getLogin)
     .post(login);
+
+router.get("/logout", logout);
 
 module.exports = router;

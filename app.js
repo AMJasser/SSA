@@ -23,8 +23,7 @@ const index = require("./routes/index");
 const events = require("./routes/events");
 const contact = require("./routes/contact");
 const members = require("./routes/members");
-const login = require("./routes/login");
-const logout = require("./routes/logout");
+const auth = require("./routes/auth");
 
 const app = express();
 
@@ -76,8 +75,7 @@ app.use("/", index);
 app.use("/events", events);
 app.use("/contact", contact);
 app.use("/members", members);
-app.use("/login", login);
-app.use("/logout", logout);
+app.use("/", auth);
 
 app.use(errorHandler);
 
