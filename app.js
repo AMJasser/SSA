@@ -59,7 +59,7 @@ app.use(cors());
 app.use(function (req, res, next) {
     res.setHeader(
         "Content-Security-Policy",
-        "default-src 'self'; font-src 'self' fonts.googleapis.com fonts.gstatic.com; img-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; frame-src 'self';"
+        "default-src 'self'; font-src 'self' fonts.googleapis.com fonts.gstatic.com; img-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; frame-src 'self' google.com docs.google.com;"
     );
     next();
 });

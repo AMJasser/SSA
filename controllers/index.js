@@ -26,6 +26,13 @@ exports.getTeam = asyncHandler(async (req, res, next) => {
     viewResponse(req, res, next, "team");
 });
 
+// @desc      Get board application page
+// @route     GET /board
+// @access    Public
+exports.getBoard = asyncHandler(async (req, res, next) => {
+    viewResponse(req, res, next, "boardApp");
+});
+
 // @desc      Get manage page
 // @route     GET /about
 // @access    Private/admin
