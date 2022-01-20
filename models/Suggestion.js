@@ -8,7 +8,6 @@ const SuggestionSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, "Please add an email"],
-        unique: true,
         match: [
             /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             "Please add a valid email",
@@ -21,13 +20,19 @@ const SuggestionSchema = new mongoose.Schema({
     votes: {
         type: Number,
         default: 0,
-        voters: [
-            {
-                type: mongoose.Schema.ObjectId,
-                ref: "Member",
-            },
-        ],
     },
+    upvoters: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: "Member",
+        },
+    ],
+    downvoters: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: "Member",
+        },
+    ],
     createdAt: {
         type: Date,
         default: Date.now,
