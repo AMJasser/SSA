@@ -180,6 +180,7 @@
                         action="/events/<%= event._id %>?_method=DELETE"
                         method="POST"
                         enctype="application/x-www-form-urlencoded"
+                        onsubmit="return confirm('Are you sure you want to DELETE <%= event.name %>?')"
                     >
                         <input type="submit" value="Delete" />
                     </form>
@@ -202,7 +203,12 @@
                 <td><%= contact.email %></td>
                 <td><%= contact.message %></td>
                 <td>
-                    <form action="/contact/<%= contact._id %>?_method=DELETE" method="POST" enctype="application/x-www-form-urlencoded">
+                    <form
+                        action="/contact/<%= contact._id %>?_method=DELETE"
+                        method="POST"
+                        enctype="application/x-www-form-urlencoded"
+                        onsubmit="return confirm('Are you sure you want to DELETE <%= contact.name %>?')"
+                    >
                         <input type="submit" value="Delete" />
                     </form>
                 </td>
@@ -212,10 +218,7 @@
     </section>
     <section>
         <h2>Events</h2>
-        <form
-            action="/members/export"
-            method="GET"
-        >
+        <form action="/members/export" method="GET">
             <input type="submit" value="Export Members Excel" />
         </form>
     </section>
