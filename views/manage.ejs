@@ -217,6 +217,33 @@
         </table>
     </section>
     <section>
+        <h2>Suggestions</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Suggestion</th>
+            </tr>
+            <% suggestions.forEach(function(suggestion) { %>
+            <tr>
+                <td><%= suggestion.name %></td>
+                <td><%= suggestion.email %></td>
+                <td><%= suggestion.suggestion %></td>
+                <td>
+                    <form
+                        action="/suggestions/<%= suggestion._id %>?_method=DELETE"
+                        method="POST"
+                        enctype="application/x-www-form-urlencoded"
+                        onsubmit="return confirm('Are you sure you want to DELETE <%= suggestion.name %>?')"
+                    >
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+        </table>
+    </section>
+    <section>
         <h2>Events</h2>
         <form action="/members/export" method="GET">
             <input type="submit" value="Export Members Excel" />

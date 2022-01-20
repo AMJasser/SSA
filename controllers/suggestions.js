@@ -7,7 +7,9 @@ const Suggestion = require("../models/Suggestion");
 // @route     GET /suggestions
 // @access    Public
 exports.getSuggestions = asyncHandler(async (req, res, next) => {
-    viewResponse(req, res, next, "suggestions");
+    const suggestions = await Suggestion.find();
+
+    viewResponse(req, res, next, "suggestions", { suggestions });
 });
 
 // @desc      Create suggestions
@@ -16,5 +18,22 @@ exports.getSuggestions = asyncHandler(async (req, res, next) => {
 exports.createSuggestion = asyncHandler(async (req, res, next) => {
     await Suggestion.create(req.body);
 
-    res.status(201).redirect("/");
+    res.status(201).redirect("/suggestions");
+});
+
+// @desc      Delete Suggestion
+// @route     DELETE /suggestions/:id
+// @access    Private
+exports.deleteSuggestion = asyncHandler(async (req, res, next) => {
+    const suggestion = await Suggestion.findById(req.params.id);
+
+    if (!suggestion) {
+        return next(
+            new ErrorResponse(`Suggestion not found`)
+        );
+    }
+
+    suggestion.remove();
+
+    res.status(201).redirect("/manage");
 });

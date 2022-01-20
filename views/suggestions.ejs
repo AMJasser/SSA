@@ -19,6 +19,12 @@
         </section>
         <input type="submit">
     </form>
+    <% suggestions.forEach(function(suggestion) { %>
+        <section>
+            <h2>Suggestion</h2>
+            <p><%= suggestion.suggestion %></p>
+        </section>
+    <% }) %>
 </main>
 
 <%- include ("partials/footer") %>
