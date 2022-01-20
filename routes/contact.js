@@ -6,6 +6,8 @@ const asyncHandler = require("../middleware/async");
 
 const router = express.Router({ mergeParams: true });
 
+const { protect, protectAdmin } = require("../middleware/auth");
+
 // @desc      Get about page
 // @route     GET /contact
 // @access    Public
@@ -32,7 +34,7 @@ router.post(
 // @route     POST /contact/:id
 // @access    Public
 router.delete(
-    "/:id/",
+    "/:id/", protect, protectAdmin,
     asyncHandler(async (req, res, next) => {
         const contact = await Contact.findById(req.params.id);
 

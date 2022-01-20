@@ -15,6 +15,6 @@ router.get("/", getIndex);
 router.get("/about", getAbout);
 router.get("/team", getTeam);
 router.get("/board", getBoard)
-router.get("/manage", protect, protectAdmin, getManage)
+router.get("/manage", protect, protectAdmin, getManage);
 
 module.exports = router;
