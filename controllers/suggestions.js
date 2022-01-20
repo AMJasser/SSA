@@ -9,16 +9,16 @@ const Suggestion = require("../models/Suggestion");
 exports.getSuggestions = asyncHandler(async (req, res, next) => {
     let suggestions = await Suggestion.find();
 
-    if (req.user._id) {
+    if (typeof req.user === "object") {
         suggestions.forEach(function(suggestion) {
             for (const upvoter of suggestion.upvoters) {
-                if (upvoter._id.toString === req.user._id.toString) {
+                if (upvoter._id.toString() === req.user._id.toString()) {
                     suggestion.userupvoted = true;
                 }
             }
             
             for (const downvoter of suggestion.downvoters) {
-                if (downvoter._id.toString === req.user._id.toString) {
+                if (downvoter._id.toString() === req.user._id.toString()) {
                     suggestion.userdownvoted = true;
                 }
             }
@@ -67,7 +67,7 @@ exports.upvote = asyncHandler(async (req, res, next) => {
     }
 
     for (var i = 0; i < suggestion.upvoters.length; i++) {
-        if (suggestion.upvoters[i]._id.toString === req.user._id.toString) {
+        if (suggestion.upvoters[i]._id.toString() === req.user._id.toString()) {
             suggestion.upvoters.splice(i, 1);
             suggestion.votes -= 1;
 
@@ -98,7 +98,7 @@ exports.downvote = asyncHandler(async (req, res, next) => {
     }
 
     for (var i = 0; i < suggestion.downvoters.length; i++) {
-        if (suggestion.downvoters[i]._id.toString === req.user._id.toString) {
+        if (suggestion.downvoters[i]._id.toString() === req.user._id.toString()) {
             suggestion.downvoters.splice(i, 1);
             suggestion.votes += 1;
 
