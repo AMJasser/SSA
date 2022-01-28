@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 const Member = require("../models/Member");
-const connectDB = require('../config/db');
+const connectDB = require('./db');
 const asyncHandler = require("../middleware/async");
 
 // Load env vars
