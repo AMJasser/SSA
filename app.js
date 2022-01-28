@@ -11,6 +11,7 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const errorHandler = require("./middleware/error");
 const connectDB = require('./config/db');
+const bodyParser = require("body-parser");
 const { checkAuth } = require("./middleware/auth")
 
 // Load env vars
@@ -34,7 +35,9 @@ app.set("view engine", "ejs");
 app.use(methodOverride('_method'));
 
 // Body parser
-app.use(express.urlencoded());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 // Cookie parser
 app.use(cookieParser());
