@@ -143,7 +143,7 @@ header div {
     flex-grow: 1;
     padding: 0 100px;
     background: linear-gradient(rgba(0, 108, 53, 0.6), rgba(0, 108, 53, 0.6)),
-        url("group.png");
+        url("group.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
