@@ -14,7 +14,8 @@ const seedLogin = asyncHandler(async () => {
         name: "Abdullah AlJasser",
         email: "aaljasser3@gatech.edu",
         phone: "4708126969",
-        password: "Aboody.204"
+        password: "Aboody.204",
+	isAdmin: true
     }
 
     await Member.create(user);
