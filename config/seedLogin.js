@@ -4,7 +4,7 @@ const connectDB = require('../config/db');
 const asyncHandler = require("../middleware/async");
 
 // Load env vars
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: "./config.env" });
 
 // Connect to database
 connectDB();
@@ -18,9 +18,8 @@ const seedLogin = asyncHandler(async () => {
     }
 
     await Member.create(user);
+    console.log("Successful seed");
+    process.exit(0);
 });
 
 seedLogin();
-
-console.log("successful seed")
-process.exit(0);
