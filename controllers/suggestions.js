@@ -3,38 +3,13 @@ const asyncHandler = require("../middleware/async");
 const viewResponse = require("../utils/viewResponse");
 const Suggestion = require("../models/Suggestion");
 
-// @desc      Get suggestions page
-// @route     GET /suggestions
-// @access    Public
-exports.getSuggestions = asyncHandler(async (req, res, next) => {
-    let suggestions = await Suggestion.find();
-
-    if (typeof req.user === "object") {
-        suggestions.forEach(function(suggestion) {
-            for (const upvoter of suggestion.upvoters) {
-                if (upvoter._id.toString() === req.user._id.toString()) {
-                    suggestion.userupvoted = true;
-                }
-            }
-            
-            for (const downvoter of suggestion.downvoters) {
-                if (downvoter._id.toString() === req.user._id.toString()) {
-                    suggestion.userdownvoted = true;
-                }
-            }
-        })
-    }
-
-    viewResponse(req, res, next, "suggestions", { suggestions });
-});
-
 // @desc      Create suggestions
 // @route     POST /suggestions
 // @access    Public
 exports.createSuggestion = asyncHandler(async (req, res, next) => {
     await Suggestion.create(req.body);
 
-    res.status(201).redirect("/suggestions");
+    res.status(201).redirect("/contact");
 });
 
 // @desc      Delete Suggestion
@@ -73,7 +48,7 @@ exports.upvote = asyncHandler(async (req, res, next) => {
 
             suggestion.save();
 
-            return res.status(201).redirect("/suggestions");
+            return res.status(201).redirect("/contact");
         }
     }
 
@@ -82,7 +57,7 @@ exports.upvote = asyncHandler(async (req, res, next) => {
 
     suggestion.save();
 
-    res.status(201).redirect("/suggestions");
+    res.status(201).redirect("/contact");
 });
 
 // @desc    Downvote Suggestion
@@ -104,7 +79,7 @@ exports.downvote = asyncHandler(async (req, res, next) => {
 
             suggestion.save();
 
-            return res.status(201).redirect("/suggestions");
+            return res.status(201).redirect("/contact");
         }
     }
 
@@ -113,5 +88,5 @@ exports.downvote = asyncHandler(async (req, res, next) => {
 
     suggestion.save();
 
-    res.status(201).redirect("/suggestions");
+    res.status(201).redirect("/contact");
 });

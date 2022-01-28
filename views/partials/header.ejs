@@ -28,15 +28,12 @@
             <nav>
                 <a href="/">HOME</a>
                 <a href="/about">ABOUT</a>
-                <a href="/team">TEAM</a>
                 <a href="/members">MEMBERSHIP</a>
                 <a href="/events">EVENTS</a>
-                <a href="/board">BOARD-APP</a>
                 <% if (typeof user === 'object' && user.isAdmin === true) { %>
                     <a href="/manage">MANAGE</a>
                 <% } %>
                 <a href="/contact">CONTACT</a>
-                <a href="/suggestions">SUGGESTIONS</a>
                 <% if (!(typeof user === 'object')) { %>
                     <a href="/login">LOGIN</a>
                 <% } else { %>
@@ -52,15 +49,12 @@
         <div id="shrink-header">
             <a href="/">HOME</a>
             <a href="/about">ABOUT</a>
-            <a href="/team">TEAM</a>
             <a href="/members">MEMBERSHIP</a>
             <a href="/events">EVENTS</a>
-            <a href="/board">BOARD-APP</a>
             <% if (typeof user === 'object' && user.isAdmin === true) { %>
                 <a href="/manage">MANAGE</a>
             <% } %>
             <a href="/contact">CONTACT</a>
-            <a href="/suggestions">SUGGESTIONS</a>
             <% if (!(typeof user === 'object')) { %>
                 <a href="/login">LOGIN</a>
             <% } else { %>
