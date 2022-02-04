@@ -23,7 +23,6 @@ connectDB();
 const index = require("./routes/index");
 const events = require("./routes/events");
 const contact = require("./routes/contact");
-const suggestions = require("./routes/suggestions");
 const members = require("./routes/members");
 const auth = require("./routes/auth");
 
@@ -78,7 +77,6 @@ app.use(checkAuth);
 app.use("/", index);
 app.use("/events", events);
 app.use("/contact", contact);
-app.use("/suggestions", suggestions);
 app.use("/members", members);
 app.use("/", auth);
 

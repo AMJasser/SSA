@@ -1,7 +1,6 @@
 const express = require("express");
 const ErrorResponse = require("../utils/errorResponse");
 const Contact = require("../models/Contact");
-const Suggestion = require("../models/Suggestion");
 const viewResponse = require("../utils/viewResponse");
 const asyncHandler = require("../middleware/async");
 
@@ -15,25 +14,7 @@ const { protect, protectAdmin } = require("../middleware/auth");
 router.get(
     "/",
     asyncHandler(async (req, res, next) => {
-        let suggestions = await Suggestion.find();
-
-        if (typeof req.user === "object") {
-            suggestions.forEach(function (suggestion) {
-                for (const upvoter of suggestion.upvoters) {
-                    if (upvoter._id.toString() === req.user._id.toString()) {
-                        suggestion.userupvoted = true;
-                    }
-                }
-
-                for (const downvoter of suggestion.downvoters) {
-                    if (downvoter._id.toString() === req.user._id.toString()) {
-                        suggestion.userdownvoted = true;
-                    }
-                }
-            });
-        }
-
-        viewResponse(req, res, next, "contact", { suggestions });
+        viewResponse(req, res, next, "contact");
     })
 );
 
