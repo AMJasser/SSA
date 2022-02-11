@@ -1,7 +1,8 @@
 <%- include ("partials/header") %>
 
 <main>
-    <h2>Contact</h2>
+    <h2>Let's Connect</h2>
+    <h4>We are happy to address any inquiries.</h4>
     <form action="/contact" method="POST" enctype="application/x-www-form-urlencoded">
         <section>
             <div>
@@ -13,7 +14,7 @@
                 <input type="text" name="email" id="email" value="<% if (typeof query.email === 'string') %><%= query.email %>">
             </div>
             <div style="grid-column: span 2;">
-                <label for="message">Message</label>
+                <label for="message">How can we help?</label>
                 <textarea name="message" id="message"><% if (typeof query.message === 'string') %><%= query.message %></textarea>
             </div>
         </section>
