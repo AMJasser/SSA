@@ -34,6 +34,10 @@ const errorHandler = (err, req, res, next) => {
         }
     }
 
+    if (req.url.indexOf("msg") > -1) {
+        return;
+    }
+
     params.push("msg=" + error.message);
     
     res.status(error.statusCode || 500).redirect(req.url + "?" + params.join("&"));
