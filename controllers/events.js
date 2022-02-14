@@ -58,12 +58,14 @@ exports.dersvp = asyncHandler(async (req, res, next) => {
 // @access    Private/admin
 exports.createEvent = asyncHandler(async (req, res, next) => {
     req.body.mainPhoto = req.files.mainPhoto[0].filename;
-    req.body.photos = [];
 
-    req.files.photo.forEach(function(file) {
-        console.log(file.filename);
-        req.body.photos.push(file.filename);
-    });
+    if (req.files.photo) {
+        req.body.photos = [];
+        req.files.photo.forEach(function(file) {
+            console.log(file.filename);
+            req.body.photos.push(file.filename);
+        });
+    }
 
     await Event.create(req.body);
 
