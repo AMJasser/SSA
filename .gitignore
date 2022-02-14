@@ -6,3 +6,4 @@ public/uploads/*
 ideas.txt
 public/users.xlsx
 .DS_Store
+config/config.env
