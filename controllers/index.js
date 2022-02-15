@@ -24,8 +24,16 @@ exports.getAbout = asyncHandler(async (req, res, next) => {
 // @access    Private/admin
 exports.getManage = asyncHandler(async (req, res, next) => {
     const members = await Member.find();
-    const events = await Event.find();
+    let events;
     const contacts = await Contact.find();
+
+    if (req.query.sortDate) {
+        events = await Event.find().sort(req.query.sortDate === "nearest" ? "date" : "-date")
+    } else if (req.query.sortCreated) {
+        events = await Event.find().sort(req.query.sortCreated === "nearest" ? "createdAt" : "-createdAt");
+    } else {
+        events = await Event.find();
+    }
 
     viewResponse(req, res, next, "manage", { members, events, contacts });
 });

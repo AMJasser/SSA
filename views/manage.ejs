@@ -157,6 +157,22 @@
     <% if (typeof events === 'object') { %>
     <section>
         <h2>Events</h2>
+        <form action="/manage" method="GET">
+            <label>Sort Date Created</label>
+            <select name="sortCreated" style="height: auto;" onchange="this.parentElement.submit()">
+                <option></option>
+                <option>nearest</option>
+                <option>farthest</option>
+            </select>
+        </form>
+        <form action="/manage" method="GET">
+            <label>Sort Date</label>
+            <select name="sortDate" style="height: auto;" onchange="this.parentElement.submit()">
+                <option></option>
+                <option>nearest</option>
+                <option>farthest</option>
+            </select>
+        </form>
         <table>
             <tr>
                 <th>Name</th>

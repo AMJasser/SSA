@@ -1,14 +1,6 @@
 <%- include ("partials/header") %>
 
 <main>
-    <!--<form action="/events" method="GET" style="text-align: left;">
-        <label style="display: inline-block;">Sort by:</label>
-        <select style="margin: 0 0 30px 20px; display: initial; height: auto; padding: 10px 10px; display: inline-block;" onchange="this.parentElement.submit()" name="sort">
-            <option></option>
-            <option>nearest</option>
-            <option>farthest</option>
-        </select>
-    </form>-->
     <% if (typeof upcomingEvents === 'object' && upcomingEvents.length > 0) { %>
         <h2>Upcoming Events</h2>
         <div class="card-container">
