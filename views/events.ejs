@@ -62,6 +62,7 @@
                                 <% }) %>
                             </div>
                             <section>
+                                <div style="background-image: url('/uploads/<%= event.mainPhoto %>');"></div>
                                 <% event.photos.forEach(function(photo) { %>
                                     <div style="background-image: url('/uploads/<%= photo %>');"></div>
                                 <% }) %>
