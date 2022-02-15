@@ -1,62 +1,14 @@
 <%- include ("partials/header") %>
 
 <main>
-    <% if (typeof pastEvents === 'object' && pastEvents.length > 0) { %>
-    <h2>Past Events</h2>
-    <div class="card-container">
-        <% pastEvents.forEach(function(event) { %>
-            <div class="card" onclick="showOverlay(this)">
-                <div
-                    class="img"
-                    style="background-image: url('/uploads/<%= event.mainPhoto %>')"
-                ></div>
-                <div class="text">
-                    <h3><%= event.name %></h3>
-                    <%
-                        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                        let suffix;
-                        let minutes;
-                        let hours;
-
-                        if (event.date.getHours() >= 12) {
-                            suffix = 'PM'
-                            hours = event.date.getHours() - 12;
-                        } else {
-                            suffix = 'AM'
-                            hours = event.date.getHours();
-                        }
-
-                        if (event.date.getMinutes() === 0) {
-                            minutes = '00';
-                        } else {
-                            minutes = event.date.getMinutes();
-                        }
-                    %>
-                    <h6><%= monthNames[event.date.getMonth()] %> <%= event.date.getDate() %>, <%= event.date.getFullYear() %> <%= hours %>:<%= minutes %> <%= suffix %> at <%= event.location %></h6>
-                    <p>
-                        <%= event.description %>
-                    </p>
-                </div>
-                <div class="overlay">
-                    <div>
-                        <h3>Event Photos</h3>
-                        <h4>Attendees</h3>
-                        <div class="rsvp">
-                            <% event.attendees.forEach(function(attendee) { %>
-                                <span><%= attendee.name %></span>
-                            <% }) %>
-                        </div>
-                        <section>
-                            <% event.photos.forEach(function(photo) { %>
-                                <div style="background-image: url('/uploads/<%= photo %>');"></div>
-                            <% }) %>
-                        </section>
-                    </div>
-                </div>
-            </div>
-        <% }) %>
-    </div>
-    <% } %>
+    <!--<form action="/events" method="GET" style="text-align: left;">
+        <label style="display: inline-block;">Sort by:</label>
+        <select style="margin: 0 0 30px 20px; display: initial; height: auto; padding: 10px 10px; display: inline-block;" onchange="this.parentElement.submit()" name="sort">
+            <option></option>
+            <option>nearest</option>
+            <option>farthest</option>
+        </select>
+    </form>-->
     <% if (typeof upcomingEvents === 'object' && upcomingEvents.length > 0) { %>
         <h2>Upcoming Events</h2>
         <div class="card-container">
@@ -128,6 +80,62 @@
             <% }) %>
         </div>
     <% } %>
+    <% if (typeof pastEvents === 'object' && pastEvents.length > 0) { %>
+        <h2>Past Events</h2>
+        <div class="card-container">
+            <% pastEvents.forEach(function(event) { %>
+                <div class="card" onclick="showOverlay(this)">
+                    <div
+                        class="img"
+                        style="background-image: url('/uploads/<%= event.mainPhoto %>')"
+                    ></div>
+                    <div class="text">
+                        <h3><%= event.name %></h3>
+                        <%
+                            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                            let suffix;
+                            let minutes;
+                            let hours;
+    
+                            if (event.date.getHours() >= 12) {
+                                suffix = 'PM'
+                                hours = event.date.getHours() - 12;
+                            } else {
+                                suffix = 'AM'
+                                hours = event.date.getHours();
+                            }
+    
+                            if (event.date.getMinutes() === 0) {
+                                minutes = '00';
+                            } else {
+                                minutes = event.date.getMinutes();
+                            }
+                        %>
+                        <h6><%= monthNames[event.date.getMonth()] %> <%= event.date.getDate() %>, <%= event.date.getFullYear() %> <%= hours %>:<%= minutes %> <%= suffix %> at <%= event.location %></h6>
+                        <p>
+                            <%= event.description %>
+                        </p>
+                    </div>
+                    <div class="overlay">
+                        <div>
+                            <h3>Event Photos</h3>
+                            <h4>Attendees</h3>
+                            <div class="rsvp">
+                                <% event.attendees.forEach(function(attendee) { %>
+                                    <span><%= attendee.name %></span>
+                                <% }) %>
+                            </div>
+                            <section>
+                                <% event.photos.forEach(function(photo) { %>
+                                    <div style="background-image: url('/uploads/<%= photo %>');"></div>
+                                <% }) %>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+        <% } %>
 </main>
 <script type="text/javascript">
     function showOverlay(x) {

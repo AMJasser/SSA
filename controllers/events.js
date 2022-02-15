@@ -7,7 +7,8 @@ const Event = require("../models/Event");
 // @route     GET /events
 // @access    Public
 exports.getEvents = asyncHandler(async (req, res, next) => {
-    const events = await Event.find().populate("attendees");
+    let events;
+
     const pastEvents = [];
     const upcomingEvents = [];
     const now = new Date();
