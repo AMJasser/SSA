@@ -1,0 +1,1 @@
+concurrently "pscale connect ssa main --port 3306" "npm run dev"
