@@ -20,8 +20,6 @@ export default function Users() {
             body: JSON.stringify(data),
         });
         const json = await res.json();
-        
-        console.log(json);
 
         // Find the index of the user that was updated
         const index = users.findIndex((user: { id: string }) => user.id === id);
