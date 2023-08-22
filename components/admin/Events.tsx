@@ -91,6 +91,7 @@ export default function Events() {
                                         <td>{event.date}</td>
                                         <td>{event.location}</td>
                                         <td className='flex flex-row justify-start items-center gap-2'>
+                                            <Link href={`/admin/rsvp/${event.id}`} className="btn btn-primary">Attendees</Link>
                                             <Link
                                                 href={`/events/${event.id}/edit`}
                                                 className='btn btn-warning'
