@@ -17,12 +17,14 @@ export default function RSVP({ eventId }: { eventId: string }) {
 
     const router = useRouter();
 
-    useEffect(() => {
-        fetchEventUser();
-        fetchAttendees();
-    }, []);
-
     const { data: session } = useSession();
+
+    useEffect(() => {
+        if (session && session.user.verified) {
+            fetchEventUser();
+            fetchAttendees();
+        }
+    }, []);
 
     if (!session || !session.user.verified) {
         return (
