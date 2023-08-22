@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -23,6 +23,9 @@ export default function Header() {
             <div className='flex-none'>
                 <ul className='menu menu-horizontal px-1'>
                     <li>
+                        <Link href='/membership'>membership</Link>
+                    </li>
+                    <li>
                         <Link href='/events'>events</Link>
                     </li>
                     {session && session.user.isAdmin && (
@@ -30,17 +33,15 @@ export default function Header() {
                             <Link href='/admin'>admin</Link>
                         </li>
                     )}
-                    {
-                        session ? (
-                            <li>
-                                <Link href='/api/auth/signout'>logout</Link>
-                            </li>
-                        ) : (
-                            <li>
-                                <Link href='/api/auth/signin'>login</Link>
-                            </li>
-                        )
-                    }
+                    {session ? (
+                        <li>
+                            <Link href='/api/auth/signout'>logout</Link>
+                        </li>
+                    ) : (
+                        <li>
+                            <Link href='/api/auth/signin'>login</Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         </div>
