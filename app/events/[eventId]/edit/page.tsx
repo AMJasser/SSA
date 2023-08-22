@@ -54,6 +54,7 @@ export default function Page({
 
         if (res.ok) {
             router.push("/events");
+            router.refresh();
         }
     }
 

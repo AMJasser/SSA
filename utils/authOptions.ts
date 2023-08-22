@@ -29,6 +29,7 @@ export const authOptions: NextAuthOptions = {
                 if (userDB) {
                     token.id = userDB.id;
                     token.isAdmin = userDB.isAdmin;
+                    token.verified = userDB.verified;
                 }
             }
 
@@ -38,6 +39,7 @@ export const authOptions: NextAuthOptions = {
             if (session.user) {
                 session.user.id = token.id as string;
                 session.user.isAdmin = token.isAdmin as boolean;
+                session.user.verified = token.verified as boolean;
             }
 
             return session;

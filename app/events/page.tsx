@@ -15,7 +15,7 @@ export default async function Page() {
     return (
         <div className='min-h-screen flex flex-col justify-start'>
             <Header />
-            <div className='bg-primary grow p-4'>
+            <div className='bg-primary grow p-6'>
                 <div className='bg-base-100 rounded mx-auto my-0 max-w-[1000px] p-6'>
                     <h2 className='font-bold text-3xl mb-4'>Events</h2>
                     <div>
@@ -48,7 +48,10 @@ export default async function Page() {
                                             : event.description}
                                     </p>
                                     <div className='card-actions justify-end'>
-                                        <Link href={`/events/${event.id}`} className='btn btn-primary'>
+                                        <Link
+                                            href={`/events/${event.id}`}
+                                            className='btn btn-primary'
+                                        >
                                             VIEW
                                         </Link>
                                     </div>

@@ -16,6 +16,7 @@ export default function Header() {
                         className='static'
                         alt='logo'
                         fill
+                        priority
                     />
                 </Link>
             </div>

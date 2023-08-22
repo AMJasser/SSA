@@ -12,6 +12,7 @@ declare module "next-auth" {
             name: string;
             image: string;
             isAdmin: boolean;
+            verified: boolean;
         };
     }
 }

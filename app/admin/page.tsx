@@ -18,8 +18,8 @@ export default function Page() {
     return (
         <div className="min-h-screen flex flex-col justify-start">
             <Header />
-            <div className='bg-primary p-4 grow'>
-                <div className='max-w-[1000px] mx-auto my-0 bg-base-100 rounded p-4 h-fit'>
+            <div className='bg-primary p-6 grow'>
+                <div className='max-w-[1000px] mx-auto my-0 bg-base-100 rounded p-6 h-fit'>
                     <Users />
                     <Events />
                     <CreateEvent />

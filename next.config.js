@@ -7,6 +7,12 @@ const nextConfig = {
                 hostname: "uploadthing.com",
                 port: "",
                 pathname: "/f/**"
+            },
+            {
+                protocol: "https",
+                hostname: "lh3.googleusercontent.com",
+                port: "",
+                pathname: "/a/**"
             }
         ]
     }
