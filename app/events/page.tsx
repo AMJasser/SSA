@@ -18,7 +18,7 @@ export default async function Page() {
             <div className='bg-primary grow p-6'>
                 <div className='bg-base-100 rounded mx-auto my-0 max-w-[1000px] p-6'>
                     <h2 className='font-bold text-3xl mb-4'>Events</h2>
-                    <div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
                         {events.map((event) => (
                             <div
                                 className='card card-compact w-96 bg-base-100 shadow-xl'
