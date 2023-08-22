@@ -80,14 +80,29 @@ export default function Events() {
                                     <tr key={event.id}>
                                         <td>{index + 1}</td>
                                         <td>{event.title}</td>
-                                        <td>{event.description}</td>
+                                        <td>
+                                            {event.description.length > 45
+                                                ? event.description.substring(
+                                                      0,
+                                                      45
+                                                  ) + "..."
+                                                : event.description}
+                                        </td>
                                         <td>{event.date}</td>
                                         <td>{event.location}</td>
                                         <td className='flex flex-row justify-start items-center gap-2'>
-                                            <Link href={`/events/${event.id}/edit`} className="btn btn-warning">Edit</Link>
+                                            <Link
+                                                href={`/events/${event.id}/edit`}
+                                                className='btn btn-warning'
+                                            >
+                                                Edit
+                                            </Link>
                                             <button
                                                 onClick={() =>
-                                                    confirmDelete(event.id, event.title)
+                                                    confirmDelete(
+                                                        event.id,
+                                                        event.title
+                                                    )
                                                 }
                                                 className='btn btn-error'
                                             >

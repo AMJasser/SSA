@@ -107,7 +107,7 @@ export default function Page({
                     }}
                 />
                 <button type='submit' className='btn btn-primary'>
-                    Create Event
+                    Edit Event
                 </button>
             </form>
         </>
