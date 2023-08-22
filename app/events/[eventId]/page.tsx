@@ -17,7 +17,7 @@ export async function generateMetadata({
     });
 
     return {
-        metadataBase: new URL("https://ssa-gt.com"),
+        metadataBase: new URL("https://ssa-amjasser.vercel.app"),
         title: event?.title,
         description: event?.description,
         openGraph: {
