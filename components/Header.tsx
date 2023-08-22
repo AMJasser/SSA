@@ -1,9 +1,11 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
-import getSession from "@/utils/getSession";
+import { useSession } from "next-auth/react";
 
-export default async function Header() {
-    const session = await getSession();
+export default function Header() {
+    const { data: session } = useSession();
 
     return (
         <div className='navbar bg-base-100'>
@@ -27,6 +29,17 @@ export default async function Header() {
                             <Link href='/admin'>admin</Link>
                         </li>
                     )}
+                    {
+                        session ? (
+                            <li>
+                                <Link href='/api/auth/signout'>logout</Link>
+                            </li>
+                        ) : (
+                            <li>
+                                <Link href='/api/auth/signin'>login</Link>
+                            </li>
+                        )
+                    }
                 </ul>
             </div>
         </div>
