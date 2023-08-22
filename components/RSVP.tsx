@@ -14,19 +14,29 @@ export default function RSVP({ eventId }: { eventId: string }) {
     });
     const [attendees, setAttendees] = useState([]);
     const [attendeesSearch, setAttendeesSearch] = useState("");
+    const [user, update] = useState({
+        verified: false,
+        id: ""
+    });
 
-    const router = useRouter();
-
-    const { data: session } = useSession();
+    const fetchUser = async () => {
+        const res = await fetch("/api/users/me");
+        const json = await res.json();
+        update(json);
+    }
 
     useEffect(() => {
-        if (session && session.user.verified) {
+        fetchUser();
+    }, []);
+
+    useEffect(() => {
+        if (user && user?.verified) {
             fetchEventUser();
             fetchAttendees();
         }
-    }, []);
+    }, [user]);
 
-    if (!session || !session.user.verified) {
+    if (!user || !user.verified) {
         return (
             <div className='text-center p-6 border border-neutral rounded'>
                 <h2 className='font-bold text-3xl'>
@@ -41,7 +51,7 @@ export default function RSVP({ eventId }: { eventId: string }) {
     }
 
     const fetchAttendees = async () => {
-        if (!session || !session.user.verified) return;
+        if (!user || !user.verified) return;
 
         const res = await fetch(`/api/rsvp/${eventId}`);
         const json = await res.json();
@@ -49,14 +59,14 @@ export default function RSVP({ eventId }: { eventId: string }) {
     };
 
     const fetchEventUser = async () => {
-        if (!session || !session.user.verified) return;
-        const res = await fetch(`/api/rsvp/${eventId}/${session.user.id}`);
+        if (!user || !user.verified) return;
+        const res = await fetch(`/api/rsvp/${eventId}/${user.id}`);
         const json = await res.json();
         setEventUser(json);
     };
 
     const updateRSVP = async (rsvp: boolean, anonymous: boolean) => {
-        const res = await fetch(`/api/rsvp/${eventId}/${session.user.id}`, {
+        const res = await fetch(`/api/rsvp/${eventId}/${user.id}`, {
             method: "PATCH",
             body: JSON.stringify({
                 rsvp,
