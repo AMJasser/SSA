@@ -39,12 +39,15 @@ export default function RSVP({ eventId }: { eventId: string }) {
     }
 
     const fetchAttendees = async () => {
+        if (!session || !session.user.verified) return;
+
         const res = await fetch(`/api/rsvp/${eventId}`);
         const json = await res.json();
         setAttendees(json);
     };
 
     const fetchEventUser = async () => {
+        if (!session || !session.user.verified) return;
         const res = await fetch(`/api/rsvp/${eventId}/${session.user.id}`);
         const json = await res.json();
         setEventUser(json);

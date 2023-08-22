@@ -10,6 +10,12 @@ export async function GET(
         params: { eventId: string; };
     }
 ) {
+    const session = await getSession();
+
+    if (!session) {
+        return NextResponse.json({ error: "Not authorized" }, { status: 401 });
+    }
+
     const attendees = await prisma.eventUsers.findMany({
         where: {
             eventId: eventId,
